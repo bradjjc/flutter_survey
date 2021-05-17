@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jet_survey/ui/questions/questions_main.dart';
 
 class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);
@@ -67,8 +68,8 @@ class _HomeState extends State<Home> {
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //     context, MaterialPageRoute(builder: (_) => HomePage()));
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => QuestionsMain()));
                 },
                 child: Text(
                   'Sign in as guest',
