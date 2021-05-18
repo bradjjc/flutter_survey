@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class QuestionsMain extends StatefulWidget {
   const QuestionsMain({Key key}) : super(key: key);
@@ -8,11 +9,12 @@ class QuestionsMain extends StatefulWidget {
 }
 
 class _QuestionsMainState extends State<QuestionsMain> {
-  final PageController controller = PageController(initialPage: 200);
+  final PageController controller = PageController();
 
   void _pageChanged(int index) {
     setState(() {});
   }
+
 
   @override
   Widget build(BuildContext context) {

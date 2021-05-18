@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_jet_survey/provider/list_provider.dart';
 import 'package:flutter_jet_survey/ui/questions/questions_main.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);
@@ -9,6 +11,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<ListProvider>(context, listen: false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

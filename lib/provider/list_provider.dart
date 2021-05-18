@@ -2,20 +2,24 @@ import 'package:flutter/material.dart';
 
 class ListProvider extends ChangeNotifier {
 
-  List<String> freeTime = [
-      "Read",
-    "Work out",
-    "Draw",
-    "Play video games",
-    "Dance",
-    "Watch movies"
-  ];
-  List<String> superhero = [
-    "Spider man (Avengers)",
-    "Iroin man (Avengers)",
-    "Uni-Kitty (Lego Movie)",
-    "Captain Planet",
-  ];
+
+
+  Map<String, bool> freeTime = {
+    "Read": false,
+    "Work out": false,
+    "Draw": false,
+    "Play video games": false,
+    "Dance": false,
+    "Watch movies": false,
+  };
+
+
+  Map<String, bool> superhero = {
+    "Spider man (Avengers)": false,
+    "Iroin man (Avengers)": false,
+    "Uni-Kitty (Lego Movie)": false,
+    "Captain Planet": false,
+  };
 
 
 }
