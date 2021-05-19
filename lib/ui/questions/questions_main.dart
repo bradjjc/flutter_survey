@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_jet_survey/ui/compose/compose_done.dart';
+import 'package:flutter_jet_survey/ui/questions/questions_pages/questions_day_picker.dart';
+import 'package:flutter_jet_survey/ui/questions/questions_pages/questions_free_time.dart';
+import 'package:flutter_jet_survey/ui/questions/questions_pages/questions_movie.dart';
+import 'package:flutter_jet_survey/ui/questions/questions_pages/questions_slider.dart';
+import 'package:flutter_jet_survey/ui/questions/questions_pages/questions_superHero.dart';
+
 
 class QuestionsMain extends StatefulWidget {
-  const QuestionsMain({Key key}) : super(key: key);
 
   @override
   _QuestionsMainState createState() => _QuestionsMainState();
@@ -10,44 +15,114 @@ class QuestionsMain extends StatefulWidget {
 
 class _QuestionsMainState extends State<QuestionsMain> {
   final PageController controller = PageController();
+  final ButtonStyle style =
+  ElevatedButton.styleFrom();
 
-  void _pageChanged(int index) {
-    setState(() {});
-  }
+  var buttonText = 'Next';
 
+  var pageList = [
+    QuestionsFreeTime(),
+    QuestionsSuperHero(),
+    QuestionMovie(),
+    QuestionsDayPicker(),
+    QuestionsSlider(),
+  ];
+
+  int _currentPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-            height: 850.0,
-            child: Container(
-              color: Colors.white,
-              child: PageView.builder(
-                onPageChanged: _pageChanged,
-                controller: controller,
-                itemBuilder: (context, index) {
-                  return new Center(
-                    child: new Text('page ${index}'),
-                  );
-                },
-              ),
-            )),
-        Row(
-          children: [
-            Text("back"),
-            Indicator(
-              controller: controller,
-              itemCount: 6,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+              height: 850.0,
+              child: Container(
+                color: Colors.white,
+                child: PageView.builder(
+                    physics:new NeverScrollableScrollPhysics(),
+                  onPageChanged: (int index) {
+                    setState(() {
+                      _currentPageIndex = index % (pageList.length);
+                    });
+                  },
+                  controller: controller,
+                  itemBuilder: (context, index) {
+                    return pageList[index % (pageList.length)];
+                  },
+                ),
+              )),
+          Container(
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: previousPage,
+                  child: Text('Previous',
+                    style: TextStyle(color: Colors.purple,fontSize: 20),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white.withOpacity(1.0),
+                  ),
+                ),
+                Center(
+                  child: Indicator(
+                    controller: controller,
+                    itemCount: pageList.length,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right:8.0),
+                  child: ElevatedButton(
+                    onPressed: (){
+                     setState(() {
+                       if (_currentPageIndex == pageList.length -2){
+                         buttonText = "Done";
+                       }else if (_currentPageIndex != pageList.length -2){
+                         buttonText = "Next";
+                       }
+                       nextPage();
+                     });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white.withOpacity(1.0),
+                    ),
+                    child: Text(buttonText,
+                    style: TextStyle(color: Colors.purple,fontSize: 20),
+                    ),
+                  ),
+                )
+              ],
             ),
-            Text("next"),
-          ],
-        ),
-      ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  void nextPage(){
+    if (_currentPageIndex == pageList.length -1 ){
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ComposeDone()),
+      );
+    }
+    controller.animateToPage(controller.page.toInt() + 1,
+        duration: Duration(milliseconds: 200),
+        curve: Curves.easeIn
+    );
+  }
+
+  void previousPage(){
+
+    controller.animateToPage(controller.page.toInt() -1,
+        duration: Duration(milliseconds: 200),
+        curve: Curves.easeIn
     );
   }
 }
+
 
 class Indicator extends StatelessWidget {
   Indicator({
@@ -57,8 +132,8 @@ class Indicator extends StatelessWidget {
   final PageController controller;
   final int itemCount;
   final Color normalColor = Colors.blue;
-  final Color selectedColor = Colors.red;
-  final double size = 15.0;
+  final Color selectedColor = Colors.purple;
+  final double size = 20.0;
   final double spacing = 4.0;
 
   Widget _buildIndicator(
@@ -92,4 +167,3 @@ class Indicator extends StatelessWidget {
     );
   }
 }
-

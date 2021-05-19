@@ -2,17 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_jet_survey/provider/list_provider.dart';
 import 'package:provider/provider.dart';
 
-
-
-
-class QuestionsFreeTime extends StatefulWidget {
-  const QuestionsFreeTime({Key key}) : super(key: key);
+class QuestionMovie extends StatefulWidget {
+  const QuestionMovie({Key key}) : super(key: key);
 
   @override
-  _QuestionsFreeTimeState createState() => _QuestionsFreeTimeState();
+  _QuestionMovieState createState() => _QuestionMovieState();
 }
 
-class _QuestionsFreeTimeState extends State<QuestionsFreeTime> {
+class _QuestionMovieState extends State<QuestionMovie> {
   @override
   Widget build(BuildContext context) {
     var list = context.read<ListProvider>();
@@ -20,29 +17,27 @@ class _QuestionsFreeTimeState extends State<QuestionsFreeTime> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top:150.0, left: 10.0),
-            child: Text("In my free time I like to ...",
-            style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),
+            padding: const EdgeInsets.only(top:150.0, left: 0.0),
+            child: Text("What's your favorite \nmovie?",
+              style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          Expanded(
+            flex: 1,
             child: ListView(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               physics: const  NeverScrollableScrollPhysics(),
-              children: list.freeTime.keys.map((String key) {
-                return CheckboxListTile(
-                  value: list.freeTime[key],
+              children: list.movie.keys.map((String key) {
+                return new CheckboxListTile(
+                  value: list.movie[key],
                   title: new Text(key),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
+                  controlAffinity: ListTileControlAffinity.leading,
                   activeColor: Colors.purple,
                   checkColor: Colors.white,
-                  controlAffinity: ListTileControlAffinity.leading,
                   onChanged: (bool value) {
                     setState(() {
-                       list.freeTime[key] = value;
+                      list.movie[key] = value;
                     });
                   },
                 );
@@ -54,3 +49,4 @@ class _QuestionsFreeTimeState extends State<QuestionsFreeTime> {
     );
   }
 }
+

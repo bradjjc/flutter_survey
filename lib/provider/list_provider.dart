@@ -21,5 +21,11 @@ class ListProvider extends ChangeNotifier {
     "Captain Planet": false,
   };
 
+  Map<String, bool> movie = {
+    "Star Trek": false,
+    "The social network": false,
+    "Back to the future": false,
+    "Outbreak": false,
+  };
 
 }
