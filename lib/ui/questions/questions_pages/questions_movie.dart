@@ -17,9 +17,9 @@ class _QuestionMovieState extends State<QuestionMovie> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top:150.0, left: 0.0),
+            padding: const EdgeInsets.only(top:150.0, left: 10.0),
             child: Text("What's your favorite \nmovie?",
-              style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(

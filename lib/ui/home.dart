@@ -11,7 +11,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   @override
   void initState() {
     super.initState();
@@ -23,7 +22,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("",
+        title: Text(
+          "",
           style: TextStyle(color: Colors.amber),
         ),
         backgroundColor: Colors.transparent,
@@ -33,16 +33,52 @@ class _HomeState extends State<Home> {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 60.0),
+              padding: const EdgeInsets.only(top: 10.0),
               child: Center(
-                child: Container(
-                    width: 200,
-                    height: 150,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('https://raw.githubusercontent.com/flutter-rus/flutter-rus.github.io/master/images/logo.png'
-                        )),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top:50.0),
+                      child: Container(
+                        height: 150,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("images/jetsurvey.jpeg"),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text("Jetsurvey",
+                      style: TextStyle(
+                          color: Colors.black,fontSize: 50, fontFamily: "Roboto"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top:10.0),
+                      child: Text("Better surveys with Jetpack Compose",
+                        style: TextStyle(
+                            color: Colors.black,fontSize: 20, fontFamily: "Roboto"),
+                    ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top:100.0, bottom: 20.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white.withOpacity(1.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12), // <-- Radius
+                          ),
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          'Sign in or create an account',
+                          style: TextStyle(color: Colors.black26, fontSize: 15),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -60,25 +96,46 @@ class _HomeState extends State<Home> {
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
             ),
-            ElevatedButton(
-              onPressed: (){
-                //TODO FORGOT PASSWORD SCREEN GOES HERE
-              },
-              child: Text(
-                'Continue',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
+            SizedBox(
+              width: 350.0,
+              height: 50.0,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple.withOpacity(1.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12), // <-- Radius
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => QuestionsMain()));
+                },
+                child: Text(
+                  'Continue',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
               ),
             ),
-            Text("or"),
-            Container(
-              height: 50,
-              width: 250,
-              decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+            Padding(
+              padding: const EdgeInsets.only(top:30.0, bottom: 20.0),
+              child: Text("or",
+                style: TextStyle(
+                    color: Colors.black,fontSize: 20),
+              ),
+            ),
+            SizedBox(
+              width: 350.0,
+              height: 50.0,
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.purple.withOpacity(1.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12), // <-- Radius
+                  ),
+                ),
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => QuestionsMain()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => QuestionsMain()));
                 },
                 child: Text(
                   'Sign in as guest',

@@ -21,13 +21,16 @@ class ComposeDone extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-                child:
-                Text("Compose",
-                style: TextStyle(fontSize: 50),
-                )),
             Padding(
-              padding: const EdgeInsets.only(top:30.0),
+              padding: const EdgeInsets.only(left: 10),
+              child: Container(
+                  child:
+                  Text("Compose",
+                  style: TextStyle(fontSize: 50),
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top:30.0,left: 10),
               child: Container(
                   child:
                   Text("Congratulations, you are Compose",
@@ -35,7 +38,7 @@ class ComposeDone extends StatelessWidget {
                   )),
             ),
             Padding(
-              padding: const EdgeInsets.only(top:30.0),
+              padding: const EdgeInsets.only(top:30.0,left: 10),
               child: Container(
                 child:
                 Text("You are a curious developer, always \nwilling to try something new.You want \nto stay up to date with the trends to Compose is your middle name",
@@ -44,19 +47,33 @@ class ComposeDone extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom:0.0),
-              child: ElevatedButton(
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Home()),
-                    );
-                  },
-                  child: Text("Done")),
+              padding: const EdgeInsets.only(top:400.0,left: 40),
+              child: SizedBox(
+                width: 350.0,
+                height: 40.0,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white.withOpacity(1.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12), // <-- Radius
+                      ),
+                    ),
+
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Home()),
+                      );
+                    },
+                    child: Text("Done",
+                      style: TextStyle(color: Colors.purple, fontSize: 20),
+                    )),
+              ),
             ),
           ],
         ),
       ),
+
     );
   }
 }

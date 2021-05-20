@@ -103,20 +103,27 @@ class _QuestionsDayPickerState extends State<QuestionsDayPicker> {
               children: <Widget>[
                 Column(
                   children: [
-                    ElevatedButton(
-                      onPressed: () => _selectDate(context), // Refer step 3
-                      child: Text(
-                        'Select date',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.purple,
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: SizedBox(
+                        width: 350.0,
+                        height: 50.0,
+                        child: ElevatedButton(
+                          onPressed: () => _selectDate(context), // Refer step 3
+                          child: Text(
+                            'Select date',
+                            style: TextStyle(
+                                color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.purple,
+                          ),
+                        ),
                       ),
                     ),
                     Text(
                       text.split(' ')[0],
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 55, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
