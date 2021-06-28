@@ -36,7 +36,7 @@ class _QuestionsMainState extends State<QuestionsMain> {
       child: Column(
         children: [
           SizedBox(
-              height: 850.0,
+              height: 700.0,
               child: Container(
                 color: Colors.white,
                 child: PageView.builder(
